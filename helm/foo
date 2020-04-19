@@ -1,0 +1,9 @@
+helm install confluent-platform \
+  /Users/unadkarni/workspace/operator/helm/confluent-operator/ \
+  --values=/Users/unadkarni/workspace/helm/providers/temp.yaml \
+  --namespace=confluent \
+  --set operator.enabled=true \
+  --set zookeeper.enabled=true \
+  --set kafka.enabled=true \
+  --set controlcenter.enabled=true
+ 
