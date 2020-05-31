@@ -50,8 +50,8 @@ kafka:
       cpu: 200m
       memory: 1Gi
   loadBalancer:
-    enabled: false
-    domain: ""
+    enabled: true
+    domain: "ut.selabs.net"
   tls:
     enabled: false
     fullchain: |-
@@ -59,6 +59,11 @@ kafka:
     cacerts: |-
   metricReporter:
     enabled: false
+  configOverrides:
+    server:
+    - auto.create.topics.enable=true
+  volume:
+    data0: 11G
 
 ## Connect Cluster
 ##
@@ -74,8 +79,8 @@ connect:
     privkey: |-
     cacerts: |-
   loadBalancer:
-    enabled: false
-    domain: ""
+    enabled: true 
+    domain: "ut.selabs.net"
   dependencies:
     kafka:
       bootstrapEndpoint: kafka:9071
@@ -96,8 +101,8 @@ replicator:
     privkey: |-
     cacerts: |-
   loadBalancer:
-    enabled: false
-    domain: ""
+    enabled: true
+    domain: "ut.selabs.net"
   dependencies:
     kafka:
       brokerCount: 3
@@ -115,8 +120,8 @@ schemaregistry:
     privkey: |-
     cacerts: |-
   loadBalancer:
-    enabled: false
-    domain: ""
+    enabled: true
+    domain: "ut.selabs.net"
   dependencies:
     kafka:
       brokerCount: 3
@@ -136,8 +141,8 @@ ksql:
     privkey: |-
     cacerts: |-
   loadBalancer:
-    enabled: false
-    domain: ""
+    enabled: true
+    domain: "ut.selabs.net"
   dependencies:
     kafka:
       brokerCount: 3
@@ -165,12 +170,12 @@ controlcenter:
       bootstrapEndpoint: kafka:9071
       zookeeper:
         endpoint: zookeeper:2181
-    connectCluster:
-      enabled: true
-      url: http://connectors:8083
-    ksql:
-      enabled: true
-      url: http://ksql:9088
+    # connectCluster:
+    #   enabled: true
+    #   url: http://connectors:8083
+    # ksql:
+      # enabled: true
+      # url: http://ksql:9088
     schemaRegistry:
       enabled: true
       url: http://schemaregistry:8081
@@ -178,8 +183,8 @@ controlcenter:
   ## C3 External Access
   ##
   loadBalancer:
-    enabled: false
-    domain: ""
+    enabled: true 
+    domain: "ut.selabs.net"
   ##
   ## TLS configuration
   ##
